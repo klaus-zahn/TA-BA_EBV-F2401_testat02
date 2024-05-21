@@ -23,6 +23,8 @@ public:
 
 private:
 	cv::Mat* m_proc_image[3];/* we have three processing images for visualization available */
+
+	cv::dnn::dnn4_v20190621::Net m_net;
 };
 
 
