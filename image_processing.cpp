@@ -1,4 +1,5 @@
-
+//ZaK:
+//you managed to mix the change detection and the ocr application with a somewhat unpredictable result
 
 #include "image_processing.h"
 
@@ -38,8 +39,8 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 			*image = cv::imread("MnistRaspiImage_c.png", cv::IMREAD_GRAYSCALE); 
 		#endif
 
-
-        cv::subtract(cv::Scalar::all(255), *image,*m_proc_image[0]);
+		//ZaK: obsolete code 
+        //cv::subtract(cv::Scalar::all(255), *image,*m_proc_image[0]);
 
 		if(image->channels() > 1) {
 		cv::cvtColor( *image, grayImage, cv::COLOR_RGB2GRAY );
@@ -55,9 +56,10 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 
 
 
-
+		//ZaK: you kept the change detection code
+		//here we use a simple threshold operation because the characters are black on white
 		if (mPrevImage.size() != cv::Size()) {
-
+			//ZaK: starting from here till ....
 			cv::Mat diffImage;
 			cv::absdiff(*image, mPrevImage, diffImage);
 
@@ -128,7 +130,8 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 			//to draw counter to index idx in image
 			cv::drawContours(resultImage, contours, idx, cv::Scalar(255), 1, 8 );
 			}
-
+			//ZaK
+			//.... till here the code is obsolete
 			int minSize = 20;
 			int maxSize = 40;
 
@@ -136,6 +139,7 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 			double threshold2 = 200;
 			cv::Canny(grayImage, imgCanny, threshold1, threshold2, 3, true);
 			kernel = cv::Mat::ones(5, 5, CV_8UC1); cv::morphologyEx(imgCanny, binaryImage, cv::MORPH_DILATE, kernel);
+			//ZaK: the following line is obsolete
 			stats, centroids, labelImage; 
 			//connectedComponentsWithStats(binaryImage, labelImage, stats, centroids);
 
@@ -159,6 +163,7 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 			resultImage = colorImage.clone();
 		
 			for (int i = 1; i < stats.rows; i++) {
+				//ZaK: you still use the information from connectedComponentsWithStats 
 				int topLeftx = stats.at<int>(i, 0); 
 				int topLefty = stats.at<int>(i, 1); 
 				int width = stats.at<int>(i, 2); 
