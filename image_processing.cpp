@@ -1,7 +1,7 @@
 
 
 #include "image_processing.h"
-//#define TEST_MODE
+#define TEST_MODE
 
 CImageProcessor::CImageProcessor() {
 	#ifdef TEST_MODE
@@ -35,6 +35,7 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 
 	if(!image) return(EINVALID_PARAMETER);	
 		#ifdef TEST_MODE
+			//ZaK: rather use absolute path 
 			*image = cv::imread("../CNNdir/MnistRaspiImage_c.png", cv::IMREAD_GRAYSCALE);
 		#endif
 		

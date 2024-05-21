@@ -99,6 +99,7 @@ OSC_ERR CMain::MainLoop() {
                 /* read current picture and capture next */
 			clock_t tStart = clock();
                 uint32 startCycProc=OscSupCycGet();
+		//ZaK: this statement does not "see" the definition in image_processing.cpp
 		#ifndef TEST_MODE
 			cv::Mat* img=m_camera.ReadPicture();
 		#endif
