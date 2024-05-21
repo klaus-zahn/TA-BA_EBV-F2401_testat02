@@ -33,6 +33,7 @@ cv::Mat* CImageProcessor::GetProcImage(uint32 i) {
 int CImageProcessor::DoProcess(cv::Mat* image) {
 	
 	#ifdef TEST_MODE
+		//ZaK: rather use absolute path on raspi
 		*image = cv::imread("MnistRaspiImage_c.png", cv::IMREAD_GRAYSCALE);
 	#endif
 
