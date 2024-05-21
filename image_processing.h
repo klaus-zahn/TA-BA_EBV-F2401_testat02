@@ -5,10 +5,13 @@
 #ifndef IMAGE_PROCESSING_H_
 #define IMAGE_PROCESSING_H_
 
+
+
 #include "opencv.hpp"
 
 #include "includes.h"
 #include "camera.h"
+
 
 
 
@@ -23,6 +26,10 @@ public:
 
 private:
 	cv::Mat* m_proc_image[3];/* we have three processing images for visualization available */
+	cv::Mat mPrevImage;
+	cv::Mat mBkgrImage;
+	cv::dnn::Net m_net;
+	
 };
 
 
