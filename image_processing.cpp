@@ -47,9 +47,9 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 	cv::Rect rect;
 	cv::Point maxDigit;
 
-	#ifdef TEST_MODE
-	*image = cv::imread("./mnistRaspiImage_c.png",cv::IMREAD_GRAYSCALE);
-	// *image = cv::imread("../CNNdir/mnistRaspiImage_c.png",cv::IMREAD_GRAYSCALE); // funktioniert nicht obwohl Bild auch dort
+	#ifdef TEST_MODE //ZaK: filename is case sensitive 'M' not 'm' 
+	*image = cv::imread("./MnistRaspiImage_c.png",cv::IMREAD_GRAYSCALE);
+	// *image = cv::imread("../CNNdir/MnistRaspiImage_c.png",cv::IMREAD_GRAYSCALE); // funktioniert nicht obwohl Bild auch dort
 	#endif
 
 	// Zur Abspeicherung von s/w- und farbbilder 
