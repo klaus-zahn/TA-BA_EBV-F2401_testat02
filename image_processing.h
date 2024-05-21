@@ -17,12 +17,16 @@ public:
 	CImageProcessor();
 	~CImageProcessor();
 	
+	cv::dnn::Net m_net;
+
 	int DoProcess(cv::Mat* image);
 
 	cv::Mat* GetProcImage(uint32 i);
+	
 
 private:
 	cv::Mat* m_proc_image[3];/* we have three processing images for visualization available */
+	cv::Mat mPrevImage;
 };
 
 
