@@ -17,7 +17,7 @@ CImageProcessor::CImageProcessor()
 		#ifdef TEST_MODE
 			m_net = cv::dnn::readNetFromONNX("/home/pi/CNNdir/model.onnx");
 		#else 
-			m_net = cv::dnn::readNetFromONNX("/home/pi/CNNdir/model.onnx");
+			m_net = cv::dnn::readNetFromONNX("/home/pi/CNNdir/MnistCNN_Gray.onnx");
 		#endif
 }
 
@@ -122,6 +122,7 @@ int CImageProcessor::DoProcess(cv::Mat *image)
 			m_net.setInput(blob);
 			cv::Mat output = m_net.forward();
 
+			//ZaK: rather skip output for productive code
 			for(int i0 = 0; i0 < output.cols; i0++) { 
 				std::cout << i0 << "," << output.at<float>(0,i0) << std::endl; }
 
