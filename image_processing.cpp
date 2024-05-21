@@ -136,7 +136,8 @@ int CImageProcessor::DoProcess(cv::Mat *image)
 			double maxVal = output.at<float>(0, 0);
 			for (int i0 = 0; i0 < output.cols; i0++)
 			{
-				std::cout << i0 << "," << output.at<float>(0, i0) << std::endl;
+				//ZaK: rather skip output for productive mode
+				//std::cout << i0 << "," << output.at<float>(0, i0) << std::endl;
 
 				if (maxVal < output.at<float>(0, i0))
 				{
