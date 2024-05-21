@@ -164,6 +164,8 @@ int CImageProcessor::DoProcess(cv::Mat* image) {
 				int topLeftx = rect.x;
 				int topLefty = rect.y;
 
+				//ZaK: avoid duplicate code sections: the following part is also in block 
+				//#ifdef REGION_LABELING above
 				if((minSize <= width || minSize <= heigth) && width < maxSize && heigth < maxSize){
 					int sizeCrop = (13*std::max(width, heigth))/10;
 					int topLeftxCrop = std::max(0, topLeftx + (width - sizeCrop)/2);
