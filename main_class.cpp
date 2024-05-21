@@ -2,7 +2,8 @@
 #include "main_class.h"
 #include "version.h"
 #include "ipc.h"
-
+// Exection Time
+#include "time.h"
 
 
 #include <unistd.h>
@@ -96,8 +97,11 @@ OSC_ERR CMain::MainLoop() {
 	
 	while(err==SUCCESS) { /* infinite loop if no error occurs */
                 /* read current picture and capture next */
+			clock_t tStart = clock();
                 uint32 startCycProc=OscSupCycGet();
-		cv::Mat* img=m_camera.ReadPicture();
+		#ifndef TEST_MODE
+			cv::Mat* img=m_camera.ReadPicture();
+		#endif
                 uint32 delta_time_us_proc=OscSupCycToMicroSecs(OscSupCycGet() - startCycProc);
                 OscLog(DEBUG, "Image acquisition required %ums\n", delta_time_us_proc/1000);
                 
@@ -133,6 +137,8 @@ OSC_ERR CMain::MainLoop() {
 				OscLog(DEBUG, "Sent %i images in %i ms\n", ipc.img_count, (int) delta_time_us/1000);
 			ipc.img_count=0;
 		}
+	
+		std::cout << "Time taken: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << std::endl;
 	}
 	return(err);
 }

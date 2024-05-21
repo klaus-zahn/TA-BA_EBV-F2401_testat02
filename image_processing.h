@@ -23,6 +23,9 @@ public:
 
 private:
 	cv::Mat* m_proc_image[3];/* we have three processing images for visualization available */
+	cv::Mat mPrevImage;
+	cv::dnn::Net m_net;
+	cv::Mat mBkgrImage = cv::Mat::zeros(480, 640, 0);
 };
 
 
